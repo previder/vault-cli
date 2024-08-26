@@ -1,6 +1,6 @@
 package main
 
-import "github.com/gkwmiddelkamp/vault-cli/cmd"
+import "github.com/previder/vault-cli/cmd"
 
 func main() {
 	cmd.Execute()

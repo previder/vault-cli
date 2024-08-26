@@ -2,7 +2,7 @@ package pkg
 
 import (
 	"fmt"
-	"github.com/gkwmiddelkamp/vault-cli/pkg/model"
+	"github.com/previder/vault-cli/pkg/model"
 )
 
 func (v *VaultClient) GetSecrets() ([]model.Secret, error) {

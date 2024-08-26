@@ -3,7 +3,7 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"github.com/gkwmiddelkamp/vault-cli/pkg/model"
+	"github.com/previder/vault-cli/pkg/model"
 	"github.com/spf13/cobra"
 )
 

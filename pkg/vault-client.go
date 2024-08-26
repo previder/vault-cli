@@ -3,8 +3,9 @@ package pkg
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/gkwmiddelkamp/vault-cli/pkg/model"
+	"github.com/previder/vault-cli/pkg/model"
 	"io"
 	"log"
 	"net/http"
@@ -59,7 +60,7 @@ func (v *VaultClient) request(method string, url string, requestBody interface{}
 
 	// content will be empty with GET, so can be sent anyway
 	if v == nil || v.baseUri == "" {
-		log.Fatal("Client not setup right")
+		return errors.New("vault client not setup")
 	}
 
 	b := new(bytes.Buffer)
@@ -92,6 +93,9 @@ func (v *VaultClient) request(method string, url string, requestBody interface{}
 	}()
 
 	if res.StatusCode < 200 || res.StatusCode >= 300 {
+		if res.StatusCode == 401 {
+			log.Fatal("Unauthorized")
+		}
 		log.Printf("An error was returned: %v, %v\n", res.StatusCode, res.Body)
 	}
 

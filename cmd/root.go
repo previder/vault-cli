@@ -2,9 +2,8 @@ package cmd
 
 import (
 	"encoding/json"
-	"github.com/external-secrets/external-secrets/pkg/feature"
-	"github.com/gkwmiddelkamp/vault-cli/pkg"
 	"github.com/olekukonko/tablewriter"
+	"github.com/previder/vault-cli/pkg"
 	"github.com/spf13/cobra"
 	"log"
 	"os"
@@ -46,11 +45,6 @@ func init() {
 	rootCmd.PersistentFlags().StringVarP(&token, "token", "t", "", "The authentication token")
 	rootCmd.PersistentFlags().StringVarP(&outputType, "output", "o", "json", "Output format [pretty / json]")
 	rootCmd.PersistentFlags().BoolVarP(&verbose, "verbose", "v", false, "Verbose output")
-
-	fs := feature.Features()
-	for _, f := range fs {
-		rootCmd.Flags().AddFlagSet(f.Flags)
-	}
 }
 
 func setupClient(cmd *cobra.Command, args []string) {
