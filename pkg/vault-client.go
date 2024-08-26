@@ -16,7 +16,26 @@ const (
 	jsonEncoding   = "application/json; charset=utf-8"
 )
 
+type PreviderVaultClient interface {
+	GetEnvironments() ([]model.Environment, error)
+	GetEnvironment(id string) (*model.Environment, error)
+	CreateEnvironment(create model.EnvironmentCreate) (*model.EnvironmentCreateResponse, error)
+	DeleteEnvironment(id string) error
+
+	GetTokens() ([]model.Token, error)
+	GetToken(id string) (*model.Token, error)
+	CreateToken(create model.TokenCreate) (*model.TokenCreateResponse, error)
+	DeleteToken(id string) error
+
+	GetSecrets() ([]model.Secret, error)
+	GetSecret(id string) (*model.Secret, error)
+	CreateSecret(create model.SecretCreate) (*model.Secret, error)
+	DecryptSecret(id string) (*model.SecretDecrypt, error)
+	DeleteSecret(id string) error
+}
+
 type VaultClient struct {
+	PreviderVaultClient
 	baseUri string
 	token   string
 	verbose bool
