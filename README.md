@@ -6,7 +6,7 @@ Vault-cli is a project to have a light-weight, secure and multi-tenant solution 
 
 **Release:**
 
-[![Release Version](https://img.shields.io/github/v/release/gkwmiddelkamp/vault?label=vault)](https://github.com/previder/vault-cli/releases/latest)
+[![Release Version](https://img.shields.io/github/v/release/previder/vault-cli?label=vault)](https://github.com/previder/vault-cli/releases/latest)
 
 **Last build:**
 
