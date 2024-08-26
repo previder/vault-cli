@@ -40,3 +40,11 @@ func (v *VaultClient) DecryptSecret(id string) (*model.SecretDecrypt, error) {
 	}
 	return &result, nil
 }
+
+func (v *VaultClient) DeleteSecret(id string) error {
+	err := v.request("DELETE", fmt.Sprintf("/secret/%v", id), nil, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}

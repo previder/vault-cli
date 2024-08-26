@@ -31,7 +31,7 @@ func contains(s []string, str string) bool {
 }
 
 var rootCmd = &cobra.Command{
-	Use:   "vault-client",
+	Use:   "vault-cli",
 	Short: "A client for the Previder Vault",
 	Long:  `vault.previder.io`,
 }
@@ -78,7 +78,7 @@ func printTable(headers []string, content []interface{}) {
 	table.SetHeader(headers)
 
 	for _, row := range content {
-		rowValues := []string{}
+		var rowValues []string
 		rowVal := reflect.ValueOf(row)
 		for _, header := range headers {
 			field := rowVal.FieldByName(header)

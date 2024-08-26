@@ -60,7 +60,7 @@ func (v *VaultClient) request(method string, url string, requestBody interface{}
 
 	// content will be empty with GET, so can be sent anyway
 	if v == nil || v.baseUri == "" {
-		return errors.New("vault client not setup")
+		return errors.New("Previder vault client not setup")
 	}
 
 	b := new(bytes.Buffer)

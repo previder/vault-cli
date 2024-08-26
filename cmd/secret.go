@@ -31,7 +31,6 @@ func init() {
 		RunE:       getSecret,
 		PreRun:     setupClient,
 	}
-
 	secretCmd.AddCommand(cmdGet)
 
 	var cmdCreate = &cobra.Command{
@@ -53,8 +52,17 @@ func init() {
 		RunE:       decryptSecret,
 		PreRun:     setupClient,
 	}
-
 	secretCmd.AddCommand(cmdDecrypt)
+
+	var cmdDelete = &cobra.Command{
+		Use:        "delete [id]",
+		Short:      "Delete a secret",
+		Args:       cobra.ExactArgs(1),
+		ArgAliases: []string{"id"},
+		RunE:       deleteSecret,
+		PreRun:     setupClient,
+	}
+	secretCmd.AddCommand(cmdDelete)
 }
 
 func listSecret(cmd *cobra.Command, args []string) error {
@@ -133,6 +141,14 @@ func decryptSecret(cmd *cobra.Command, args []string) error {
 		fmt.Printf("%+v\n", content)
 	} else {
 		printJson(content)
+	}
+	return nil
+}
+
+func deleteSecret(cmd *cobra.Command, args []string) error {
+	err := vaultClient.DeleteSecret(args[0])
+	if err != nil {
+		return err
 	}
 	return nil
 }

@@ -31,7 +31,6 @@ func init() {
 		RunE:       getToken,
 		PreRun:     setupClient,
 	}
-
 	secretCmd.AddCommand(cmdGet)
 
 	var cmdCreate = &cobra.Command{
@@ -45,6 +44,16 @@ func init() {
 	cmdCreate.Flags().StringP("description", "d", "", "Description of the token")
 	cmdCreate.Flags().StringP("expires", "e", "", "Expire date of the token, date in following formats are allowed [2006-01-02 /  2006-01-02 15:04:05 / 2006-01-02T15:04:05 ]")
 	cmdCreate.Flags().StringP("type", "r", "ReadWrite", "Type of token [ReadOnly / ReadWrite / EnvironmentAdmin / MasterAdmin]")
+
+	var cmdDelete = &cobra.Command{
+		Use:        "delete [id]",
+		Short:      "Delete a token",
+		Args:       cobra.ExactArgs(1),
+		ArgAliases: []string{"id"},
+		RunE:       deleteToken,
+		PreRun:     setupClient,
+	}
+	secretCmd.AddCommand(cmdDelete)
 }
 
 func listToken(cmd *cobra.Command, args []string) error {
@@ -116,5 +125,13 @@ func createToken(cmd *cobra.Command, args []string) error {
 		printJson(createResponse)
 	}
 
+	return nil
+}
+
+func deleteToken(cmd *cobra.Command, args []string) error {
+	err := vaultClient.DeleteToken(args[0])
+	if err != nil {
+		return err
+	}
 	return nil
 }

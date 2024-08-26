@@ -31,3 +31,11 @@ func (v *VaultClient) CreateEnvironment(create model.EnvironmentCreate) (*model.
 	}
 	return &result, nil
 }
+
+func (v *VaultClient) DeleteEnvironment(id string) error {
+	err := v.request("DELETE", fmt.Sprintf("/environment/%v", id), nil, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}

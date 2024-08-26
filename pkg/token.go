@@ -31,3 +31,11 @@ func (v *VaultClient) CreateToken(create model.TokenCreate) (*model.TokenCreateR
 	}
 	return &result, nil
 }
+
+func (v *VaultClient) DeleteToken(id string) error {
+	err := v.request("DELETE", fmt.Sprintf("/token/%v", id), nil, nil)
+	if err != nil {
+		return err
+	}
+	return nil
+}

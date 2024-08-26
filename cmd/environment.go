@@ -45,6 +45,17 @@ func init() {
 	cmdCreate.Flags().StringP("name", "n", "", "Name of the environment")
 	cmdCreate.Flags().StringP("contact", "c", "", "Contact email of the environment")
 	cmdCreate.Flags().BoolP("active", "a", true, "Activate the environment")
+
+	var cmdDelete = &cobra.Command{
+		Use:        "delete [id]",
+		Short:      "Delete an environment",
+		Args:       cobra.ExactArgs(1),
+		ArgAliases: []string{"id"},
+		RunE:       deleteEnvironment,
+		PreRun:     setupClient,
+	}
+
+	environmentCmd.AddCommand(cmdDelete)
 }
 
 func listEnvironment(cmd *cobra.Command, args []string) error {
@@ -115,6 +126,15 @@ func createEnvironment(cmd *cobra.Command, args []string) error {
 		fmt.Printf("%+v\n", createResponse)
 	} else {
 		printJson(createResponse)
+	}
+
+	return nil
+}
+
+func deleteEnvironment(cmd *cobra.Command, args []string) error {
+	err := vaultClient.DeleteEnvironment(args[0])
+	if err != nil {
+		return err
 	}
 
 	return nil
