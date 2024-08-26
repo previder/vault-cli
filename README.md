@@ -1,5 +1,5 @@
 <div style="text-align: center">
-<img src="https://vault.pnck.nl/cdn/logo.png" width="250" alt=""/>
+<img src="https://cdn.previder.io/vault/logo.png" width="250" alt=""/>
 </div>
 
 Vault-cli is a project to have a light-weight, secure and multi-tenant solution for encrypted password storage. Is uses a the Vault Rest API where you can manage your environments, tokens and secrets.
