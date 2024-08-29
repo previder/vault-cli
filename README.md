@@ -24,14 +24,11 @@ The MasterAdmin token can create an Environment. As a response to this call an E
 # Tokens
 There are 4 types of tokens, each having its own purpose.
 
-|                                  | MasterAdmin   	 | EnvironmentAdmin  	 | ReadWrite  	 | ReadOnly   	 |
-|----------------------------------|-----------------|---------------------|--------------|--------------|
-| Create MasterAdmin token	        | 	     ✅         | 	                   | 	            | 	            |
-| Create EnvironmentAdmin token	   | 	 ✅              | 	                   | 	            | 	            |
-| Create ReadWrite/ReadOnly token	 | 	               | 	      ✅            | 	            | 	            |
-| Manage environments              | 	     ✅          | 	                   | 	            | 	            |
-| Manage secrets	                  | 	               | 	                   | 	  ✅          | 	            |
-| Get decrypted secret             | 	               | 	                   | 	   ✅         | 	    ✅        |
+|                                     	 | EnvironmentAdmin  	 | ReadWrite  	 | ReadOnly   	 |
+|----------------------------------|---------------------|--------------|--------------|
+| Create ReadWrite/ReadOnly token	 | 	      ✅            | 	            | 	            |
+| Manage secrets	                  | 	                   | 	  ✅          | 	            |
+| Get decrypted secret             | 	                   | 	   ✅         | 	    ✅        |
 
 
 # Getting started
