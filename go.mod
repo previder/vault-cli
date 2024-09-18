@@ -1,6 +1,6 @@
 module github.com/previder/vault-cli
 
-go 1.23.0
+go 1.23.1
 
 require (
 	github.com/olekukonko/tablewriter v0.0.5
