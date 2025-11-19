@@ -76,7 +76,7 @@ func (v *VaultClient) request(method string, url string, requestBody interface{}
 
 	// content will be empty with GET, so can be sent anyway
 	if v == nil || v.baseUri == "" {
-		return errors.New("Previder vault client not setup")
+		return errors.New("previder vault client not setup")
 	}
 
 	b := new(bytes.Buffer)
@@ -110,8 +110,8 @@ func (v *VaultClient) request(method string, url string, requestBody interface{}
 
 	if res.StatusCode < 200 || res.StatusCode >= 300 {
 		if res.StatusCode == 401 {
-			log.Println("Vault token is not authorized to read and decrypt secrets")
-			return errors.New(fmt.Sprintf("vault token is not authorized to read and decrypt secrets"))
+			log.Println("Vault token is not authorized for this action")
+			return errors.New(fmt.Sprintf("vault token is not authorized for this action"))
 		}
 		log.Printf("An error was returned: %v, %v\n", res.StatusCode, res.Body)
 	}
